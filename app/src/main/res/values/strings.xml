@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">heh_inventory</string>
+    <string name="app_name">HEH Inventory</string>
+    <string name="logo_description">Logo de la Haute-Ecole en Hainaut</string>
+    <string name="form_hint_mail">Adresse email</string>
+    <string name="form_hint_password">Mot de passe</string>
+    <string name="form_login_button">Connexion</string>
+    <!-- Errors -->
+    <string name="error_ok">OK</string>
+    <string name="error_mail_format">L\'adresse mail n\'est pas valide.</string>
+    <string name="error_password_format">Le mot de passe n\'est pas valide.</string>
+    <string name="error_user_not_found">L\'adresse mail ou le mot de passe est incorrect.</string>
 </resources>
