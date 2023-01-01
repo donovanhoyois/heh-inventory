@@ -3,7 +3,7 @@ package be.heh.heh_inventory.database.entity
 import androidx.room.*
 
 @Entity
-data class StoredItem(
+data class Device(
     @PrimaryKey(autoGenerate = true) val uid: Long,
     @ColumnInfo(name = "device_family") val family: String? = null,
     @ColumnInfo(name = "device_brand") val brand: String? = null,

@@ -4,19 +4,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import be.heh.heh_inventory.database.entity.StoredItem
+import be.heh.heh_inventory.database.entity.Device
 
 @Dao
 interface StoredItemDao {
-    @Query("SELECT * FROM StoredItem")
-    fun getAll(): List<StoredItem>
+    @Query("SELECT * FROM Device")
+    fun getAll(): List<Device>
 
-    @Query("SELECT * FROM StoredItem WHERE uid = (:id)")
-    fun getById(id: Int): StoredItem
+    @Query("SELECT * FROM Device WHERE uid = (:id)")
+    fun getById(id: Int): Device
 
     @Insert
-    fun insert(vararg item: StoredItem)
+    fun insert(vararg item: Device)
 
     @Update
-    fun update(vararg item: StoredItem)
+    fun update(vararg item: Device)
 }

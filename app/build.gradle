@@ -52,4 +52,6 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     // Lifecycle
     runtimeOnly group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: '2.2.0'
+    // BCrypt (hashing passwords)
+    implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 }

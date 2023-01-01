@@ -14,6 +14,9 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE uid = (:id)")
     fun getById(id: Int): User
 
+    @Query("SELECT * FROM User WHERE user_mail_address = (:email) LIMIT 1")
+    fun getByMail(email: String) : User
+
     @Insert
     fun insert(vararg item: User)
 
