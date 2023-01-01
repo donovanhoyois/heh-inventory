@@ -1,4 +1,4 @@
-package com.example.heh_inventory
+package be.heh.heh_inventory
 
 import org.junit.Test
 

@@ -8,7 +8,7 @@
     android:background="@color/theme_secondary"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context="be.heh.heh_inventory.LoginActivity">
 
     <!-- Form -->
     <ImageView

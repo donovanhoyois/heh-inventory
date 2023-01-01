@@ -1,4 +1,6 @@
-package com.example.heh_inventory
+package be.heh.heh_inventory.data
+
+import be.heh.heh_inventory.R
 
 enum class ErrorCode(val errorText : String) {
     EMAIL_FORMAT_INVALID(R.string.error_mail_format.toString()),

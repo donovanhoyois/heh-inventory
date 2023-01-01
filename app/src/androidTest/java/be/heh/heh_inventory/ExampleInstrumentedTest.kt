@@ -1,4 +1,4 @@
-package com.example.heh_inventory
+package be.heh.heh_inventory
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,14 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
 }
 
 android {
-    namespace 'com.example.heh_inventory'
+    namespace 'be.heh.heh_inventory'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.heh_inventory"
+        applicationId "be.heh.heh_inventory"
         minSdk 28
         targetSdk 32
         versionCode 1
@@ -45,10 +46,10 @@ dependencies {
     def room_version = "2.4.3"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
-    // To use Kotlin annotation processing tool (kapt)
-    //kapt("androidx.room:room-compiler:$room_version")
     // To use Kotlin Symbol Processing (KSP)
-    //ksp("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
+    // Lifecycle
+    runtimeOnly group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: '2.2.0'
 }

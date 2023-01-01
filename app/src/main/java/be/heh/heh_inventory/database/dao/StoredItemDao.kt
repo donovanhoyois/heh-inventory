@@ -1,9 +1,10 @@
-package com.example.heh_inventory
+package be.heh.heh_inventory.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import be.heh.heh_inventory.database.entity.StoredItem
 
 @Dao
 interface StoredItemDao {
