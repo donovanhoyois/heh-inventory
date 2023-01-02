@@ -10,6 +10,7 @@ import be.heh.heh_inventory.database.entity.Device
 
 class DevicesAdapter constructor(dataset : List<Device>) : RecyclerView.Adapter<DevicesAdapter.ViewHolder>(){
     val devicesList = dataset
+    var onItemClick : ((Device) -> Unit)? = null
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,6 +19,12 @@ class DevicesAdapter constructor(dataset : List<Device>) : RecyclerView.Adapter<
         val deviceFamilyImage = itemView.findViewById<ImageView>(R.id.device_family_image)
         val deviceBrand = itemView.findViewById<TextView>(R.id.device_brand)
         val deviceName = itemView.findViewById<TextView>(R.id.device_name)
+
+        init{
+            itemView.setOnClickListener{
+                onItemClick?.invoke(devicesList[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

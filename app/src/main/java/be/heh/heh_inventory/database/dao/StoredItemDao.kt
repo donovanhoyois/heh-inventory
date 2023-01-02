@@ -9,7 +9,7 @@ import be.heh.heh_inventory.database.entity.Device
 @Dao
 interface StoredItemDao {
     @Query("SELECT * FROM Device")
-    fun getAll(): List<Device>
+    fun getAll(): MutableList<Device>
 
     @Query("SELECT * FROM Device WHERE uid = (:id)")
     fun getById(id: Int): Device

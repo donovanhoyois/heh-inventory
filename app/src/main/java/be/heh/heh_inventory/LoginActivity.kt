@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.widget.Button
 import android.widget.Toast
+import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.ErrorCode
 import be.heh.heh_inventory.database.entity.User
 import com.google.android.material.textfield.TextInputEditText
 import org.mindrot.jbcrypt.BCrypt
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
                     ErrorCode.USER_NOT_FOUND -> Toast.makeText(this,
                         R.string.error_user_not_found, Toast.LENGTH_SHORT).show()
                     ErrorCode.OK ->
-                        startActivity(Intent(this, DevicesListActivity::class.java).apply{})
+                        startActivity(Intent(this, DevicesListActivity::class.java).putExtra("permissions", DatabasePermission.READ).apply{})
                 }
             }
         }
