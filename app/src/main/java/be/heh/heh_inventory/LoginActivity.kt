@@ -1,15 +1,11 @@
 package be.heh.heh_inventory
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.widget.Button
 import android.widget.Toast
-import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.ErrorCode
 import be.heh.heh_inventory.database.entity.User
 import com.google.android.material.textfield.TextInputEditText
@@ -18,7 +14,7 @@ import org.mindrot.jbcrypt.BCrypt
 class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         // UI Elements
         val loginButton = findViewById<Button>(R.id.login_button)
@@ -37,8 +33,9 @@ class LoginActivity : AppCompatActivity(){
                         R.string.error_user_not_found, Toast.LENGTH_SHORT).show()
                     ErrorCode.OK ->
                         // Start the new activity and retrieve the permissions
-                        startActivity(Intent(this, DevicesListActivity::class.java)
-                            .putExtra("permission", DatabaseHelper.db.userDao().getUserPermissionByMail(emailInput.text.toString()))
+                        startActivity(Intent(this, HomeActivity::class.java)
+                            .putExtra("user_permission", DatabaseHelper.db.userDao().getUserPermissionByMail(emailInput.text.toString()))
+                            .putExtra("user_email", emailInput.text.toString())
                             .apply{})
                 }
             }
@@ -53,7 +50,7 @@ class LoginActivity : AppCompatActivity(){
         val passwordText = passwordInput.text.toString()
         // Checking
         if (isEmpty(emailText) || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) return ErrorCode.EMAIL_FORMAT_INVALID
-        if (isEmpty(passwordText) || passwordText.length < 5) return ErrorCode.PASSWORD_FORMAT_INVALID
+        if (isEmpty(passwordText) || passwordText.length < 4) return ErrorCode.PASSWORD_FORMAT_INVALID
         return ErrorCode.OK
     }
     private fun tryToLogin(emailInput : TextInputEditText, passwordInput : TextInputEditText) : Enum<ErrorCode>{

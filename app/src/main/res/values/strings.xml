@@ -14,4 +14,18 @@
     <string name="error_mail_format">L\'adresse mail n\'est pas valide.</string>
     <string name="error_password_format">Le mot de passe n\'est pas valide.</string>
     <string name="error_user_not_found">L\'adresse mail ou le mot de passe est incorrect.</string>
+
+    <!-- Nav -->
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Ouvrir menu de navigation</string>
+    <string name="navigation_drawer_close">Fermer menu de navigation</string>
+    <string name="nav_header_title">HEH Inventory</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Header de navigation</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="menu_qr">Scanner</string>
+    <string name="menu_devices_list">Appareils</string>
+    <string name="menu_device_add">Ajouter un appareil</string>
+    <string name="menu_users">Utilisateurs</string>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/icon_qr"
+            android:title="@string/menu_qr" />
+        <item
+            android:id="@+id/nav_devices_list"
+            android:icon="@drawable/icon_smartphone"
+            android:title="@string/menu_devices_list" />
+        <item
+            android:id="@+id/nav_device_add"
+            android:icon="@drawable/icon_smartphone"
+            android:title="@string/menu_device_add" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/icon_users"
+            android:title="@string/menu_users" />
+    </group>
+</menu>
