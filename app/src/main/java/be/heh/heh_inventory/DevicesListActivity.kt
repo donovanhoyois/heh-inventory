@@ -1,12 +1,15 @@
 package be.heh.heh_inventory
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.database.entity.Device
+
 
 class DevicesListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,15 @@ class DevicesListActivity : AppCompatActivity() {
 
         // Clicks listeners
         adapter.onItemClick = { device ->
-            Toast.makeText(this, device.uid.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, device.ref.toString(), Toast.LENGTH_SHORT).show()
         }
+
+        // Retrieve permissions
+        val permission : DatabasePermission = intent.getSerializableExtra("permission") as DatabasePermission
+        print(permission)
+
+        //
     }
+
+
 }

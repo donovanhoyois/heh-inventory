@@ -17,8 +17,8 @@ class DevicesAdapter constructor(dataset : List<Device>) : RecyclerView.Adapter<
         // Your holder should contain and initialize a member variable
         // for any view that will be set as you render a row
         val deviceFamilyImage = itemView.findViewById<ImageView>(R.id.device_family_image)
-        val deviceBrand = itemView.findViewById<TextView>(R.id.device_brand)
-        val deviceName = itemView.findViewById<TextView>(R.id.device_name)
+        val deviceFullName = itemView.findViewById<TextView>(R.id.device_full_name)
+        val deviceReference = itemView.findViewById<TextView>(R.id.device_reference)
 
         init{
             itemView.setOnClickListener{
@@ -35,8 +35,8 @@ class DevicesAdapter constructor(dataset : List<Device>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val device = devicesList[position]
         holder.deviceFamilyImage.setImageResource(R.drawable.logo_heh)
-        holder.deviceBrand.text = device.brand
-        holder.deviceName.text = device.name
+        holder.deviceFullName.text = device.brand+" "+device.name
+        holder.deviceReference.text = device.ref
     }
 
     override fun getItemCount(): Int {

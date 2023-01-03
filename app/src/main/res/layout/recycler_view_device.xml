@@ -18,28 +18,25 @@
       android:layout_marginTop="8dp" />
 
   <TextView
-      android:id="@+id/device_brand"
+      android:id="@+id/device_full_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      tools:text="@tools:sample/full_names"
-      android:textSize="20sp"
-      android:textColor="@android:color/black"
-      app:layout_constraintTop_toTopOf="@+id/device_family_image"
-      app:layout_constraintStart_toEndOf="@+id/device_family_image"
       android:layout_marginStart="8dp"
-      android:layout_marginBottom="8dp"
-      app:layout_constraintBottom_toTopOf="@+id/device_name" />
+      android:layout_marginTop="8dp"
+      android:textColor="@android:color/black"
+      android:textSize="20sp"
+      app:layout_constraintStart_toEndOf="@+id/device_family_image"
+      app:layout_constraintTop_toTopOf="@+id/device_family_image"
+      tools:text="@tools:sample/full_names" />
 
   <TextView
-      android:id="@+id/device_name"
-      android:layout_width="285dp"
-      android:layout_height="20dp"
-      tools:text="@tools:sample/lorem[4:10]"
-      app:layout_constraintBottom_toBottomOf="@+id/device_family_image"
-      app:layout_constraintStart_toEndOf="@+id/device_family_image"
+      android:id="@+id/device_reference"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintHorizontal_bias="0.050" />
+      android:layout_marginTop="12dp"
+      android:text="TextView"
+      app:layout_constraintStart_toEndOf="@+id/device_full_name"
+      app:layout_constraintTop_toTopOf="@+id/device_family_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

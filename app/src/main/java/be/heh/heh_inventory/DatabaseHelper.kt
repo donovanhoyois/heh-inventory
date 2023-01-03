@@ -2,6 +2,7 @@ package be.heh.heh_inventory
 
 import android.content.Context
 import androidx.room.Room
+import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.database.AppDatabase
 import be.heh.heh_inventory.database.entity.Device
 import be.heh.heh_inventory.database.entity.User
@@ -14,18 +15,29 @@ class DatabaseHelper {
     companion object{
         lateinit var db : AppDatabase private set get
         fun startDatabase(applicationContext : Context){
-            CoroutineScope(Dispatchers.IO).launch {
+            val startJob = CoroutineScope(Dispatchers.IO).launch {
                 db = Room.databaseBuilder(
                     applicationContext,
                     AppDatabase::class.java, "heh-inventory-db"
                 ).allowMainThreadQueries().build()
+                initializeDatabase()
             }
         }
-        fun initializeDatabase(){
-            val passwordHash = BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())
-            db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", passwordHash))
-            db.storedItemDao().insert(Device(0,"phone", "Samsung", "Galaxy S8", "https://samsung.com/"))
-            db.storedItemDao().insert(Device(0,"phone", "Samsung", "Galaxy S9", "https://samsung.com/"))
+        private fun initializeDatabase(){
+            if (db.userDao().getAll().isEmpty() && db.storedItemDao().getAll().isEmpty()){
+                val passwordHash = BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())
+                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", passwordHash, DatabasePermission.READ_WRITE))
+                db.storedItemDao().insert(Device("146009/A","phone", "LG", "Nexus 5", "https://www.lg.com/"))
+                db.storedItemDao().insert(Device("146009/B","phone", "LG", "Nexus 5", "https://www.lg.com/"))
+                db.storedItemDao().insert(Device("146009/C","phone", "LG", "Nexus 5", "https://www.lg.com/"))
+                db.storedItemDao().insert(Device("146009/D","phone", "LG", "Nexus 5", "https://www.lg.com/"))
+                db.storedItemDao().insert(Device("146009/E","phone", "LG", "Nexus 5", "https://www.lg.com/"))
+                db.storedItemDao().insert(Device("146010/A","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.storedItemDao().insert(Device("146010/B","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.storedItemDao().insert(Device("146010/C","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.storedItemDao().insert(Device("146010/D","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.storedItemDao().insert(Device("146010/E","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+            }
         }
     }
 }

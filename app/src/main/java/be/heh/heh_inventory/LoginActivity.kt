@@ -1,6 +1,9 @@
 package be.heh.heh_inventory
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
@@ -33,14 +36,16 @@ class LoginActivity : AppCompatActivity(){
                     ErrorCode.USER_NOT_FOUND -> Toast.makeText(this,
                         R.string.error_user_not_found, Toast.LENGTH_SHORT).show()
                     ErrorCode.OK ->
-                        startActivity(Intent(this, DevicesListActivity::class.java).putExtra("permissions", DatabasePermission.READ).apply{})
+                        // Start the new activity and retrieve the permissions
+                        startActivity(Intent(this, DevicesListActivity::class.java)
+                            .putExtra("permission", DatabaseHelper.db.userDao().getUserPermissionByMail(emailInput.text.toString()))
+                            .apply{})
                 }
             }
         }
 
-        // Startup
+        // Startup the db (and initialize if first startup)
         DatabaseHelper.startDatabase(applicationContext)
-        DatabaseHelper.initializeDatabase()
     }
     private fun checkInputs(emailInput : TextInputEditText, passwordInput : TextInputEditText) : Enum<ErrorCode>{
         // Retrieving text

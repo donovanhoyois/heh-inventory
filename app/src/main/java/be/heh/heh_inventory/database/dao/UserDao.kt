@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.database.entity.User
 
 @Dao
@@ -16,6 +17,9 @@ interface UserDao {
 
     @Query("SELECT * FROM User WHERE user_mail_address = (:email) LIMIT 1")
     fun getByMail(email: String) : User
+
+    @Query("SELECT user_permission FROM User WHERE user_mail_address = (:email) LIMIT 1")
+    fun getUserPermissionByMail(email : String) : DatabasePermission
 
     @Insert
     fun insert(vararg item: User)

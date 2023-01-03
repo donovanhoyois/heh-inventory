@@ -11,8 +11,8 @@ interface StoredItemDao {
     @Query("SELECT * FROM Device")
     fun getAll(): MutableList<Device>
 
-    @Query("SELECT * FROM Device WHERE uid = (:id)")
-    fun getById(id: Int): Device
+    @Query("SELECT * FROM Device WHERE device_reference = (:ref)")
+    fun getById(ref : String): Device
 
     @Insert
     fun insert(vararg item: Device)
