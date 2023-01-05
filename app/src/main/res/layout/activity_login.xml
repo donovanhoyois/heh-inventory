@@ -21,7 +21,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:orientation="vertical"
         android:paddingLeft="25dp"
         android:paddingRight="25dp">
@@ -34,11 +34,11 @@
             android:hint="@string/form_hint_mail">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:inputType="textEmailAddress"
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/form_background"
+                android:inputType="textEmailAddress"
                 android:textColorHint="@color/form_hint_grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,11 +55,11 @@
             android:hint="@string/form_hint_password">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:inputType="textPassword"
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/form_background"
+                android:inputType="textPassword"
                 android:textColorHint="@color/form_hint_grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,11 +69,23 @@
             android:layout_height="@dimen/form_login_spacing" />
 
         <!-- Login button -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/form_login_button"
             app:backgroundTint="@color/theme_primary"></com.google.android.material.button.MaterialButton>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/form_login_spacing" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/form_register_button"
+            app:backgroundTint="@color/theme_primary_variant"></com.google.android.material.button.MaterialButton>
     </LinearLayout>
 </LinearLayout>

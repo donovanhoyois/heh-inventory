@@ -6,6 +6,7 @@
     <string name="form_hint_mail">Adresse email</string>
     <string name="form_hint_password">Mot de passe</string>
     <string name="form_login_button">Connexion</string>
+    <string name="form_register_button">Inscription</string>
     <!-- Icons alternate text -->
     <string name="icon_add_device">Ajouter un appareil</string>
     <string name="icon_scan_qr">Scanner un code QR</string>
@@ -15,6 +16,7 @@
     <string name="error_mail_format">L\'adresse mail n\'est pas valide.</string>
     <string name="error_password_format">Le mot de passe n\'est pas valide.</string>
     <string name="error_user_not_found">L\'adresse mail ou le mot de passe est incorrect.</string>
+    <string name="error_user_already_exists">L\'utilisateur existe déjà !</string>
 
     <!-- Nav -->
     <string name="title_activity_home">HomeActivity</string>
