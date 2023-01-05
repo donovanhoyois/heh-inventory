@@ -7,7 +7,7 @@ import androidx.room.Update
 import be.heh.heh_inventory.database.entity.Device
 
 @Dao
-interface StoredItemDao {
+interface DeviceDao {
     @Query("SELECT * FROM Device")
     fun getAll(): MutableList<Device>
 

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import be.heh.heh_inventory.DatabaseHelper
 import be.heh.heh_inventory.DevicesAdapter
+import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.databinding.FragmentDevicesListBinding
 
 class DevicesListFragment : Fragment() {
@@ -33,7 +34,8 @@ class DevicesListFragment : Fragment() {
         val devicesList = binding.devicesRecyclerView
         devicesListViewModel.devices.observe(viewLifecycleOwner) {
             devicesList.layoutManager = LinearLayoutManager(this.context)
-            devicesList.adapter = DevicesAdapter(DatabaseHelper.db.storedItemDao().getAll())
+            devicesList.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity).navController)
+
         }
         return root
     }

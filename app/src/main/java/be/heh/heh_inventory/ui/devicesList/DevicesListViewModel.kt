@@ -9,7 +9,7 @@ import be.heh.heh_inventory.database.entity.Device
 class DevicesListViewModel : ViewModel() {
 
     private val _devices = MutableLiveData<List<Device>>().apply{
-        value = DatabaseHelper.db.storedItemDao().getAll()
+        value = DatabaseHelper.db.deviceDao().getAll()
     }
     val devices: LiveData<List<Device>> = _devices
 }

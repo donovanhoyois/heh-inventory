@@ -10,5 +10,5 @@ data class Device(
     @ColumnInfo(name = "device_brand") val brand: String? = null,
     @ColumnInfo(name = "device_name") val name: String? = null,
     @ColumnInfo(name = "website") val website: String? = null,
-    @ColumnInfo(name = "next_action") val nextAction: DeviceAction = DeviceAction.GIVE){
+    @ColumnInfo(name = "next_action") var nextAction: DeviceAction = DeviceAction.GIVE){
 }

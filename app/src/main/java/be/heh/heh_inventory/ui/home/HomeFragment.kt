@@ -58,7 +58,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(result: Result?) {
         // Find device in database (return null if don't exists)
-        val device = DatabaseHelper.db.storedItemDao().getByRef(result.toString())
+        val device = DatabaseHelper.db.deviceDao().getByRef(result.toString())
 
         // Retrieve the parent navController
         val activity = (activity as HomeActivity)
@@ -88,17 +88,16 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                 val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
                 // Change message content according the the action (give or take back)
                 val message =
-                    if(device.nextAction == DeviceAction.GIVE){
-                        getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_give))
-                    }
-                    else{
-                        getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_take_back))
-                    }
+                    if(device.nextAction == DeviceAction.GIVE)getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_give))
+                    else getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_take_back))
                 with(alertDialogBuilder) {
                     setTitle(R.string.popup_device_change_status_title)
                     setMessage(message)
                     setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_devices_list)
+                        // Update status in Database
+                        device.nextAction = if(device.nextAction == DeviceAction.GIVE) DeviceAction.TAKE_BACK else DeviceAction.GIVE
+                        DatabaseHelper.db.deviceDao().update(device)
+                        activity.navController.navigate(R.id.nav_home)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
                         activity.navController.navigate(R.id.nav_home)
