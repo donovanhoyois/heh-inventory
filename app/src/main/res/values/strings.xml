@@ -9,7 +9,8 @@
     <!-- Icons alternate text -->
     <string name="icon_add_device">Ajouter un appareil</string>
     <string name="icon_scan_qr">Scanner un code QR</string>
-    <!-- Errors -->
+
+    <!-- ErrorCode -->
     <string name="error_ok">OK</string>
     <string name="error_mail_format">L\'adresse mail n\'est pas valide.</string>
     <string name="error_password_format">Le mot de passe n\'est pas valide.</string>
@@ -23,9 +24,21 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Header de navigation</string>
     <string name="action_settings">Paramètres</string>
-
     <string name="menu_qr">Scanner</string>
     <string name="menu_devices_list">Appareils</string>
     <string name="menu_device_add">Ajouter un appareil</string>
     <string name="menu_users">Utilisateurs</string>
+
+    <!-- Confirmation popup -->
+    <string name="popup_confirm">Oui</string>
+    <string name="popup_cancel">Annuler</string>
+    <string name="popup_device_add_title">Ajouter un appareil</string>
+    <string name="popup_device_change_status_title">Modifier le statut d\'un appareil</string>
+    <string name="popup_device_add_message">Cet appareil n\'existe pas, souhaitez-vous l\'ajouter ?</string>
+    <string name="popup_device_change_status_message">Souhaitez-vous marquer l\'appareil %s comme étant "%s" ?</string>
+
+    <!-- DeviceActions -->
+    <string name="device_action_give">Prêté</string>
+    <string name="device_action_take_back">Récupéré</string>
+
 </resources>

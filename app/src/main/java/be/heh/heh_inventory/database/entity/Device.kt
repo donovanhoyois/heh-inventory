@@ -1,7 +1,7 @@
 package be.heh.heh_inventory.database.entity
 
 import androidx.room.*
-import java.util.*
+import be.heh.heh_inventory.data.DeviceAction
 
 @Entity
 data class Device(
@@ -10,6 +10,5 @@ data class Device(
     @ColumnInfo(name = "device_brand") val brand: String? = null,
     @ColumnInfo(name = "device_name") val name: String? = null,
     @ColumnInfo(name = "website") val website: String? = null,
-    @ColumnInfo(name = "last_used_date") val lastUsedDate: String? = null,
-    @ColumnInfo(name = "last_retrieved_date") val lastRetrievedDate: String? = null){
+    @ColumnInfo(name = "next_action") val nextAction: DeviceAction = DeviceAction.GIVE){
 }
