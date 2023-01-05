@@ -3,11 +3,13 @@ package be.heh.heh_inventory.ui.deviceAdd
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import be.heh.heh_inventory.DatabaseHelper
+import be.heh.heh_inventory.database.entity.Device
 
 class DeviceAddViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is deviceAdd Fragment"
+    private val _families = MutableLiveData<List<String>>().apply{
+        value = mutableListOf("Téléphone", "Tablette")
     }
-    val text: LiveData<String> = _text
+    val families: LiveData<List<String>> = _families
 }

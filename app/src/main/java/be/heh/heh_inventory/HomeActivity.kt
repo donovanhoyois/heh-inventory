@@ -34,7 +34,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var userMail : String
     lateinit var permission : DatabasePermission
 
-
+    // Datas between fragments
+    var lastScannedRef : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -74,7 +74,8 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                     setTitle(R.string.popup_device_add_title)
                     setMessage(R.string.popup_device_add_message)
                     setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_devices_list)
+                        activity.lastScannedRef = result.toString()
+                        activity.navController.navigate(R.id.nav_device_add)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
                         activity.navController.navigate(R.id.nav_home)
@@ -100,7 +101,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                         activity.navController.navigate(R.id.nav_home)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_home)
+                        activity.navController.navigate(R.id.nav_device_add)
                     }
                 }
                 val alertDialog = alertDialogBuilder.create()

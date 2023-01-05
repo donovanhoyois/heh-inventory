@@ -1,11 +1,14 @@
 package be.heh.heh_inventory.data
 
-import be.heh.heh_inventory.R
-
 enum class ErrorCode() {
-    EMAIL_FORMAT_INVALID(),
-    PASSWORD_FORMAT_INVALID(),
-    USER_NOT_FOUND(),
-    USER_ALREADY_EXISTS(),
-    OK(),
+    EMAIL_FORMAT_INVALID,
+    PASSWORD_FORMAT_INVALID,
+    USER_NOT_FOUND,
+    USER_ALREADY_EXISTS,
+    OK,
+    REFERENCE_ALREADY_EXISTS,
+    REFERENCE_FORMAT_INVALID,
+    BRAND_FORMAT_INVALID,
+    NAME_FORMAT_INVALID,
+    WEBSITE_FORMAT_INVALID
 }

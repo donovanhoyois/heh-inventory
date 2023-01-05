@@ -3,6 +3,7 @@ package be.heh.heh_inventory
 import android.content.Context
 import androidx.room.Room
 import be.heh.heh_inventory.data.DatabasePermission
+import be.heh.heh_inventory.data.DeviceFamily
 import be.heh.heh_inventory.database.AppDatabase
 import be.heh.heh_inventory.database.entity.Device
 import be.heh.heh_inventory.database.entity.User
@@ -27,16 +28,16 @@ class DatabaseHelper {
             if (db.userDao().getAll().isEmpty() && db.deviceDao().getAll().isEmpty()){
                 db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
                 db.userDao().insert(User(0, "donovan.hoyois2@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())))
-                db.deviceDao().insert(Device("146009/A","phone", "LG", "Nexus 5", "https://www.lg.com/"))
-                db.deviceDao().insert(Device("146009/B","phone", "LG", "Nexus 5", "https://www.lg.com/"))
-                db.deviceDao().insert(Device("146009/C","phone", "LG", "Nexus 5", "https://www.lg.com/"))
-                db.deviceDao().insert(Device("146009/D","phone", "LG", "Nexus 5", "https://www.lg.com/"))
-                db.deviceDao().insert(Device("146009/E","phone", "LG", "Nexus 5", "https://www.lg.com/"))
-                db.deviceDao().insert(Device("146010/A","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
-                db.deviceDao().insert(Device("146010/B","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
-                db.deviceDao().insert(Device("146010/C","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
-                db.deviceDao().insert(Device("146010/D","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
-                db.deviceDao().insert(Device("146010/E","tablet", "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.deviceDao().insert(Device("146009/A",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
+                db.deviceDao().insert(Device("146009/B",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
+                db.deviceDao().insert(Device("146009/C",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
+                db.deviceDao().insert(Device("146009/D",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
+                db.deviceDao().insert(Device("146009/E",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
+                db.deviceDao().insert(Device("146010/A",DeviceFamily.TABLET, "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.deviceDao().insert(Device("146010/B",DeviceFamily.TABLET, "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.deviceDao().insert(Device("146010/C",DeviceFamily.TABLET, "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.deviceDao().insert(Device("146010/D",DeviceFamily.TABLET, "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
+                db.deviceDao().insert(Device("146010/E",DeviceFamily.TABLET, "Samsung", "Nexus 10", "https://samsung.com/be_fr/"))
             }
         }
     }

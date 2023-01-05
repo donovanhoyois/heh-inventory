@@ -41,7 +41,6 @@ class DevicesAdapter constructor(dataset : List<Device>, navController: NavContr
         holder.deviceFullName.text = device.brand+" "+device.name
         holder.deviceReference.text = device.ref
         holder.itemView.setOnClickListener {
-            // TODO : Onclick item
             Toast.makeText(holder.itemView.rootView.context, devicesList[position].ref, Toast.LENGTH_SHORT).show()
             navController.navigate(R.id.nav_home)
         }

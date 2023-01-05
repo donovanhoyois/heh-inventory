@@ -35,7 +35,6 @@ class DevicesListFragment : Fragment() {
         devicesListViewModel.devices.observe(viewLifecycleOwner) {
             devicesList.layoutManager = LinearLayoutManager(this.context)
             devicesList.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity).navController)
-
         }
         return root
     }

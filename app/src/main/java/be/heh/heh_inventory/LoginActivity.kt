@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity(){
         setContentView(R.layout.activity_login)
 
         // UI Elements
-        val loginButton = findViewById<Button>(R.id.login_button)
+        val loginButton = findViewById<Button>(R.id.add_device_button)
         val registerButton = findViewById<Button>(R.id.register_button)
         val emailInput = findViewById<TextInputEditText>(R.id.input_email)
         val passwordInput = findViewById<TextInputEditText>(R.id.input_password)
