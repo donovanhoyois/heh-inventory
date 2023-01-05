@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "be.heh.heh_inventory"
-        minSdk 28
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -61,4 +61,6 @@ dependencies {
     runtimeOnly group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: '2.2.0'
     // BCrypt (hashing passwords)
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+    // QR Code
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
 }

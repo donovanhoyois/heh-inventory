@@ -25,8 +25,8 @@ class DatabaseHelper {
         }
         private fun initializeDatabase(){
             if (db.userDao().getAll().isEmpty() && db.storedItemDao().getAll().isEmpty()){
-                val passwordHash = BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())
-                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", passwordHash, DatabasePermission.READ_WRITE))
+                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
+                db.userDao().insert(User(0, "donovan.hoyois2@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())))
                 db.storedItemDao().insert(Device("146009/A","phone", "LG", "Nexus 5", "https://www.lg.com/"))
                 db.storedItemDao().insert(Device("146009/B","phone", "LG", "Nexus 5", "https://www.lg.com/"))
                 db.storedItemDao().insert(Device("146009/C","phone", "LG", "Nexus 5", "https://www.lg.com/"))
