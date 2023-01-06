@@ -3,6 +3,10 @@
     <string name="app_name">HEH Inventory</string>
     <string name="logo_description">Logo de la Haute-Ecole en Hainaut</string>
 
+    <!-- Database permissions -->
+    <string name="database_permission_read">Basic</string>
+    <string name="database_permission_read_write">Administrateur</string>
+
     <!-- Form Login-->
     <string name="form_hint_mail">Adresse email</string>
     <string name="form_hint_password">Mot de passe</string>

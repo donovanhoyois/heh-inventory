@@ -11,27 +11,30 @@ import be.heh.heh_inventory.DatabaseHelper
 import be.heh.heh_inventory.DevicesAdapter
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.databinding.FragmentDevicesListBinding
+import be.heh.heh_inventory.ui.usersList.UsersListViewModel
 
 class DevicesListFragment : Fragment() {
 
     private var _binding: FragmentDevicesListBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var viewModel: DevicesListViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val devicesListViewModel = ViewModelProvider(this).get(DevicesListViewModel::class.java)
+        // ViewModel and binding
+        viewModel = ViewModelProvider(this).get(DevicesListViewModel::class.java)
         _binding = FragmentDevicesListBinding.inflate(inflater, container, false)
 
-        val devicesList = binding.devicesRecyclerView
-        devicesListViewModel.devices.observe(viewLifecycleOwner) {
-            devicesList.layoutManager = LinearLayoutManager(this.context)
-            devicesList.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity))
+        // Bind to UI
+        viewModel.devices.observe(viewLifecycleOwner) {
+            binding.devicesRecyclerView.layoutManager = LinearLayoutManager(this.context)
+            binding.devicesRecyclerView.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity))
         }
         return binding.root
     }

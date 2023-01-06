@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import be.heh.heh_inventory.DatabaseHelper
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
+import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
 import be.heh.heh_inventory.database.entity.Device
@@ -72,6 +73,9 @@ class DeviceShowFragment : Fragment() {
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }
+
+        // Hide button if not authorized
+        if (activity.permission != DatabasePermission.READ_WRITE) binding.deleteDeviceButton.visibility = View.GONE
 
         return binding.root
     }

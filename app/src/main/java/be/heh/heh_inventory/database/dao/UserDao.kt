@@ -9,7 +9,7 @@ import be.heh.heh_inventory.database.entity.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM User ORDER BY user_permission DESC")
     fun getAll(): List<User>
 
     @Query("SELECT * FROM User WHERE uid = (:id)")

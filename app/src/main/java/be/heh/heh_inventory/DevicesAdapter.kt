@@ -17,11 +17,9 @@ class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : R
     val devicesList = dataset
     val activity = activity as HomeActivity
     var onItemClick : ((Device) -> Unit)? = null
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
+
+    // ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Your holder should contain and initialize a member variable
-        // for any view that will be set as you render a row
         val deviceStatusColor = itemView.findViewById<View>(R.id.device_status_color)
         val deviceFamilyImage = itemView.findViewById<ImageView>(R.id.device_family_image)
         val deviceFullName = itemView.findViewById<TextView>(R.id.device_full_name)
@@ -51,6 +49,8 @@ class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : R
         else { holder.deviceStatusColor.setBackgroundResource(R.color.device_status_unavailable) }
         holder.deviceFullName.text = device.brand+" "+device.name
         holder.deviceReference.text = device.ref
+
+        // Click listener
         holder.itemView.setOnClickListener {
             activity.lastCheckedRef = devicesList[position].ref
             activity.navController.navigate(R.id.nav_device_show)

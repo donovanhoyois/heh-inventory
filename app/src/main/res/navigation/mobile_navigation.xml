@@ -24,14 +24,14 @@
         tools:layout="@layout/fragment_device_add" />
 
     <fragment
+        android:id="@+id/nav_users_list"
+        android:name="be.heh.heh_inventory.ui.usersList.UsersListFragment"
+        android:label="@string/menu_users"
+        tools:layout="@layout/fragment_users_list" />
+
+    <fragment
         android:id="@+id/nav_device_show"
         android:name="be.heh.heh_inventory.ui.deviceShow.DeviceShowFragment"
         android:label=""
         tools:layout="@layout/fragment_device_show" />
-
-    <fragment
-        android:id="@+id/nav_users_show"
-        android:name="be.heh.heh_inventory.ui.deviceAdd.DeviceAddFragment"
-        android:label="@string/menu_users"
-        tools:layout="@layout/fragment_device_add" />
 </navigation>
