@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.Device.Device
-import be.heh.heh_inventory.database.User.User
+import be.heh.heh_inventory.database.device.Device
+import be.heh.heh_inventory.database.user.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,9 +13,9 @@ import org.mindrot.jbcrypt.BCrypt
 
 class DatabaseHelper {
     companion object{
-        lateinit var db : AppDatabase private set get
+        lateinit var db : AppDatabase private set
         fun startDatabase(applicationContext : Context){
-            val startJob = CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 db = Room.databaseBuilder(
                     applicationContext,
                     AppDatabase::class.java, "heh-inventory-db"
@@ -25,7 +25,7 @@ class DatabaseHelper {
         }
         private fun initializeDatabase(){
             // Called only at the first startup (or after data cleanup)
-            if (db.userDao().getAll().isEmpty() && db.deviceDao().getAll().isEmpty()){
+            if (db.userDao().getAll()!!.isEmpty() && db.deviceDao().getAll()!!.isEmpty()){
                 db.userDao().insert(User(0, "fabrice.scopel@heh.be", BCrypt.hashpw("admin", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
                 db.userDao().insert(User(0, "standard.user@std.heh.be", BCrypt.hashpw("test", BCrypt.gensalt())))
                 db.deviceDao().insert(Device("146009/A",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))

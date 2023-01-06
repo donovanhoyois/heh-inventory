@@ -13,7 +13,7 @@ import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.Device.Device
+import be.heh.heh_inventory.database.device.Device
 import be.heh.heh_inventory.databinding.FragmentDeviceShowBinding
 
 class DeviceShowFragment : Fragment() {
@@ -39,7 +39,7 @@ class DeviceShowFragment : Fragment() {
         activity.lastCheckedRef = null
 
         // Redirect if device is null
-        if (device == null) (activity as HomeActivity).navController.navigate(R.id.nav_home)
+        if (device == null) activity.navController.navigate(R.id.nav_home)
 
         // Bind to UI
         else{
@@ -52,17 +52,17 @@ class DeviceShowFragment : Fragment() {
         }
 
         // Click listeners
-        binding.deleteDeviceButton.setOnClickListener(){
+        binding.deleteDeviceButton.setOnClickListener{
             val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
             with(alertDialogBuilder) {
                 setTitle(R.string.popup_device_delete_title)
                 setMessage(getString(R.string.popup_device_delete_message, device?.ref))
-                setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
+                setPositiveButton(R.string.popup_confirm){ _, _ ->
                     Toast.makeText(context, getString(R.string.toast_confirm_delete_device, device?.ref), Toast.LENGTH_LONG).show()
                     DatabaseHelper.db.deviceDao().delete(device!!)
                     activity.navController.navigate(R.id.nav_devices_list)
                 }
-                setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
+                setNegativeButton(R.string.popup_cancel){ _, _ ->
                     activity.lastCheckedRef = device?.ref
                     activity.navController.navigate(R.id.nav_device_show)
                 }
@@ -83,7 +83,7 @@ class DeviceShowFragment : Fragment() {
         return R.drawable.icon_tablet
     }
 
-    private fun getStatus(nextAction: DeviceAction): CharSequence? {
+    private fun getStatus(nextAction: DeviceAction): CharSequence {
         // Return the status depending of nextAction value
         if (nextAction == DeviceAction.GIVE) return resources.getString(R.string.device_action_take_back)
         return resources.getString(R.string.device_action_give)

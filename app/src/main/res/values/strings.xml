@@ -64,6 +64,9 @@
     <string name="popup_device_change_status_message">Souhaitez-vous marquer l\'appareil %s comme étant "%s" ?</string>
     <string name="popup_device_show_title">Appareil %s</string>
     <string name="popup_device_show_message">Cet appareil est actuellement %s.</string>
+    <string name="popup_device_see_details">Voir les détails</string>
+    <string name="popup_qr_not_recognized_message">Ce code QR n\'est pas enregistré.</string>
+    <string name="popup_qr_not_recognized_title">Code QR non enregistré</string>
     <string name="popup_device_delete_title">Supprimer l\'appareil</string>
     <string name="popup_device_delete_message">Voulez-vous vraiment supprimer l\'appareil %s ?</string>
 

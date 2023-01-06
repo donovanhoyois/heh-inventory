@@ -11,7 +11,7 @@ import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DeviceFamily
 import be.heh.heh_inventory.data.ErrorCode
-import be.heh.heh_inventory.database.Device.Device
+import be.heh.heh_inventory.database.device.Device
 import be.heh.heh_inventory.databinding.FragmentDeviceAddBinding
 
 class DeviceAddFragment : Fragment() {
@@ -63,7 +63,6 @@ class DeviceAddFragment : Fragment() {
     private fun checkInputs() : Enum<ErrorCode>{
         // Retrieving text
         val reference = binding.inputReference.text
-        val family = binding.spinnerFamily.selectedItem.toString()
         val brand = binding.inputBrand.text
         val model = binding.inputName.text
         val website = binding.inputWebsite.text

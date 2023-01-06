@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
-import be.heh.heh_inventory.database.User.User
+import be.heh.heh_inventory.database.user.User
 
 class UsersListAdapter(dataset: List<User>, activity: FragmentActivity?) : RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
     val usersList = dataset
-    val activity = activity as HomeActivity
+    private val activity = activity as HomeActivity
     var onItemClick : ((User) -> Unit)? = null
 
     // ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val userImage = itemView.findViewById<ImageView>(R.id.user_image)
-        val userMail = itemView.findViewById<TextView>(R.id.user_mail)
-        val userPermission = itemView.findViewById<TextView>(R.id.user_permission)
+        val userImage: ImageView = itemView.findViewById(R.id.user_image)
+        val userMail: TextView = itemView.findViewById(R.id.user_mail)
+        val userPermission: TextView = itemView.findViewById(R.id.user_permission)
 
         init{
             itemView.setOnClickListener{
@@ -31,7 +31,7 @@ class UsersListAdapter(dataset: List<User>, activity: FragmentActivity?) : Recyc
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_user, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_user, parent, false)
         return ViewHolder(view)
     }
 
@@ -53,7 +53,6 @@ class UsersListAdapter(dataset: List<User>, activity: FragmentActivity?) : Recyc
     }
 
     override fun getItemCount(): Int {
-        if (usersList != null) return usersList.size
-        return 0
+        return usersList.size
     }
 }

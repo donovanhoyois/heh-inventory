@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import be.heh.heh_inventory.data.ErrorCode
 import be.heh.heh_inventory.database.DatabaseHelper
-import be.heh.heh_inventory.database.User.User
+import be.heh.heh_inventory.database.user.User
 import com.google.android.material.textfield.TextInputEditText
 import org.mindrot.jbcrypt.BCrypt
 
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity(){
 
     private fun tryToLogin(emailInput : TextInputEditText, passwordInput : TextInputEditText) : Enum<ErrorCode>{
         // Try to retrieve the user
-        val user : User = DatabaseHelper.db.userDao().getByMail(emailInput.text.toString())
+        val user : User? = DatabaseHelper.db.userDao().getByMail(emailInput.text.toString())
         if (user != null){
             if (!BCrypt.checkpw(passwordInput.text.toString(), user.password)) return ErrorCode.USER_NOT_FOUND
             return ErrorCode.OK
@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity(){
     }
 
     private fun tryToRegister(emailInput: TextInputEditText, passwordInput: TextInputEditText): Enum<ErrorCode> {
-        val user : User = DatabaseHelper.db.userDao().getByMail(emailInput.text.toString())
+        val user : User? = DatabaseHelper.db.userDao().getByMail(emailInput.text.toString())
         if (user == null){
             DatabaseHelper.db.userDao().insert(User(0, emailInput.text.toString(), BCrypt.hashpw(passwordInput.text.toString(), BCrypt.gensalt())))
             return ErrorCode.OK

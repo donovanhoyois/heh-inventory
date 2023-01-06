@@ -22,13 +22,13 @@ class DevicesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // ViewModel and Binding
-        viewModel = ViewModelProvider(this).get(DevicesListViewModel::class.java)
+        viewModel = ViewModelProvider(this)[DevicesListViewModel::class.java]
         _binding = FragmentDevicesListBinding.inflate(inflater, container, false)
 
         // Bind to UI
         viewModel.devices.observe(viewLifecycleOwner) {
             binding.devicesRecyclerView.layoutManager = LinearLayoutManager(this.context)
-            binding.devicesRecyclerView.adapter = DevicesListAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity))
+            binding.devicesRecyclerView.adapter = DevicesListAdapter(DatabaseHelper.db.deviceDao().getAll()!!, (activity as HomeActivity))
         }
         return binding.root
     }

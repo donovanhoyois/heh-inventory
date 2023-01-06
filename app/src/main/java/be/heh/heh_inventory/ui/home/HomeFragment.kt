@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
@@ -23,7 +22,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
 class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
-
     private var _binding: FragmentHomeBinding? = null
 
     // QR Code
@@ -38,8 +36,6 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -59,23 +55,23 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         // Find device in database (return null if don't exists)
         val device = DatabaseHelper.db.deviceDao().getByRef(result.toString())
 
-        // Retrieve the parent navController
+        // Activity
         val activity = (activity as HomeActivity)
 
         // Prepare alert dialog box
         val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
 
-        if ((this.activity as HomeActivity).permission as DatabasePermission == DatabasePermission.READ_WRITE){
+        if (activity.permission == DatabasePermission.READ_WRITE){
             if (device == null){
                 // ACTION : Add unregistered device
                 with(alertDialogBuilder) {
                     setTitle(R.string.popup_device_add_title)
                     setMessage(R.string.popup_device_add_message)
-                    setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
+                    setPositiveButton(R.string.popup_confirm){ _, _ ->
                         activity.lastCheckedRef = result.toString()
                         activity.navController.navigate(R.id.nav_device_add)
                     }
-                    setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
+                    setNegativeButton(R.string.popup_cancel){ _, _ ->
                         restartCamera()
                     }
                 }
@@ -91,14 +87,14 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                 with(alertDialogBuilder) {
                     setTitle(R.string.popup_device_change_status_title)
                     setMessage(message)
-                    setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
+                    setPositiveButton(R.string.popup_confirm){ _, _ ->
                         // Update status in Database
                         device.nextAction = if(device.nextAction == DeviceAction.GIVE) DeviceAction.TAKE_BACK else DeviceAction.GIVE
                         DatabaseHelper.db.deviceDao().update(device)
                         Toast.makeText(context, R.string.toast_confirm_status_device, Toast.LENGTH_LONG).show()
                         restartCamera()
                     }
-                    setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
+                    setNegativeButton(R.string.popup_cancel){ _, _ ->
                         restartCamera()
                     }
                 }
@@ -107,30 +103,36 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
             }
         }
         else{
-            // See the device
-            val title = getString(R.string.popup_device_show_title, device.ref)
-            val message =
-                if (device.nextAction == DeviceAction.GIVE) getString(R.string.popup_device_show_message, getString(R.string.device_action_take_back).lowercase())
-                else getString(R.string.popup_device_show_message, getString(R.string.device_action_give).lowercase())
-            with(alertDialogBuilder) {
-                setTitle(title)
-                setMessage(message)
-                setPositiveButton("Voir les détails"){dialogInterface, which ->
-                    activity.lastCheckedRef = result.toString()
-                    activity.navController.navigate(R.id.nav_device_show)
+            if (device != null){
+                // See the device
+                val title = getString(R.string.popup_device_show_title, device.ref)
+                val message =
+                    if (device.nextAction == DeviceAction.GIVE) getString(R.string.popup_device_show_message, getString(R.string.device_action_take_back).lowercase())
+                    else getString(R.string.popup_device_show_message, getString(R.string.device_action_give).lowercase())
+                with(alertDialogBuilder) {
+                    setTitle(title)
+                    setMessage(message)
+                    setPositiveButton(R.string.popup_device_see_details){ _, _ ->
+                        activity.lastCheckedRef = result.toString()
+                        activity.navController.navigate(R.id.nav_device_show)
+                    }
+                    setNeutralButton(R.string.popup_neutral){_, _ ->
+                        restartCamera()
+                    }
                 }
-                setNeutralButton(R.string.popup_neutral){dialogInterface, which ->
-                    restartCamera()
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
+            }
+            else{
+                with(alertDialogBuilder) {
+                    setTitle(R.string.popup_qr_not_recognized_title)
+                    setMessage(R.string.popup_qr_not_recognized_message)
+                    setNeutralButton(R.string.popup_neutral){_, _ ->
+                        restartCamera()
+                    }
                 }
             }
-            val alertDialog = alertDialogBuilder.create()
-            alertDialog.show()
         }
-    }
-
-    fun restartCamera(){
-        scannerView?.setResultHandler(this)
-        scannerView?.startCamera(0)
     }
 
     override fun onResume() {
@@ -143,7 +145,18 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         scannerView?.stopCamera()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun restartCamera(){
+        scannerView?.setResultHandler(this)
+        scannerView?.startCamera(0)
+    }
+
     private fun setPermission(){
+        // Check if permission for the camera is needed
         val permission = this.context?.let { ContextCompat.checkSelfPermission(it, android.Manifest.permission.CAMERA) }
         if(permission != PackageManager.PERMISSION_GRANTED){
             makeRequest()
@@ -151,11 +164,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
     }
 
     private fun makeRequest() {
+        // Request permission for the camera
         ActivityCompat.requestPermissions(this.activity as Activity, arrayOf(android.Manifest.permission.CAMERA), 1)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

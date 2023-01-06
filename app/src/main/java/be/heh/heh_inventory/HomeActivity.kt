@@ -17,7 +17,6 @@ import androidx.navigation.ui.setupWithNavController
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
 
 class HomeActivity : AppCompatActivity() {
@@ -44,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarHome.toolbar)
 
         // Floating button
-        binding.appBarHome.fab.setOnClickListener { view ->
+        binding.appBarHome.fab.setOnClickListener {
             navController.navigate(R.id.nav_home)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -108,10 +107,6 @@ class HomeActivity : AppCompatActivity() {
                         "You need camera permission",
                         Toast.LENGTH_SHORT
                     ).show()
-                }
-                else if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    val fragment = supportFragmentManager.findFragmentById(R.id.fragment_home)
-                    print(fragment)
                 }
             }
         }

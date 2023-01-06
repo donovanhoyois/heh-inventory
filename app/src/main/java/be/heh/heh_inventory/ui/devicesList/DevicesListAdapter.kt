@@ -11,19 +11,19 @@ import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.Device.Device
+import be.heh.heh_inventory.database.device.Device
 
 class DevicesListAdapter constructor(dataset : List<Device>, activity: Activity) : RecyclerView.Adapter<DevicesListAdapter.ViewHolder>(){
     val devicesList = dataset
-    val activity = activity as HomeActivity
+    private val activity = activity as HomeActivity
     var onItemClick : ((Device) -> Unit)? = null
 
     // ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val deviceStatusColor = itemView.findViewById<View>(R.id.device_status_color)
-        val deviceFamilyImage = itemView.findViewById<ImageView>(R.id.device_family_image)
-        val deviceFullName = itemView.findViewById<TextView>(R.id.device_full_name)
-        val deviceReference = itemView.findViewById<TextView>(R.id.device_reference)
+        val deviceStatusColor: View = itemView.findViewById(R.id.device_status_color)
+        val deviceFamilyImage: ImageView = itemView.findViewById(R.id.device_family_image)
+        val deviceFullName: TextView = itemView.findViewById(R.id.device_full_name)
+        val deviceReference: TextView = itemView.findViewById(R.id.device_reference)
 
         init{
             itemView.setOnClickListener{
@@ -51,7 +51,8 @@ class DevicesListAdapter constructor(dataset : List<Device>, activity: Activity)
             R.color.device_status_available
         ) }
         else { holder.deviceStatusColor.setBackgroundResource(R.color.device_status_unavailable) }
-        holder.deviceFullName.text = device.brand+" "+device.name
+        val deviceFullName = device.brand+" "+device.name
+        holder.deviceFullName.text = deviceFullName
         holder.deviceReference.text = device.ref
 
         // Click listener
@@ -62,7 +63,6 @@ class DevicesListAdapter constructor(dataset : List<Device>, activity: Activity)
     }
 
     override fun getItemCount(): Int {
-        if (devicesList != null) return devicesList.size
-        return 0
+        return devicesList.size
     }
 }
