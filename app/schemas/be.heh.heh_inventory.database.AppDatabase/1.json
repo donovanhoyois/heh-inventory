@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6b4e12122157f40f8b0bd7374d949724",
+    "identityHash": "70044e47dfee03ddc4652426c7ef7cbc",
     "entities": [
       {
         "tableName": "Device",
@@ -56,7 +56,7 @@
       },
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_mail_address` TEXT, `user_password` TEXT, `user_permission` TEXT NOT NULL, `last_login` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_mail_address` TEXT, `user_password` TEXT, `user_permission` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -81,12 +81,6 @@
             "columnName": "user_permission",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "lastLogin",
-            "columnName": "last_login",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -102,7 +96,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6b4e12122157f40f8b0bd7374d949724')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '70044e47dfee03ddc4652426c7ef7cbc')"
     ]
   }
 }
