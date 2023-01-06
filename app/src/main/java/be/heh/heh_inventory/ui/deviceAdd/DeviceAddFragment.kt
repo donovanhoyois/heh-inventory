@@ -51,7 +51,7 @@ class DeviceAddFragment : Fragment() {
                 ErrorCode.WEBSITE_FORMAT_INVALID -> Toast.makeText(context, R.string.error_website_format, Toast.LENGTH_SHORT).show()
                 ErrorCode.OK -> {
                     addToDatabase()
-                    Toast.makeText(context, resources.getString(R.string.toast_confirm_added_device, binding.inputReference.text), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity.applicationContext, resources.getString(R.string.toast_confirm_added_device, binding.inputReference.text), Toast.LENGTH_SHORT).show()
                     binding.inputReference.setText("")
                 }
             }
