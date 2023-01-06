@@ -50,16 +50,20 @@
     <!-- Confirmation popup -->
     <string name="popup_confirm">Oui</string>
     <string name="popup_cancel">Annuler</string>
+    <string name="popup_neutral">OK</string>
     <string name="popup_device_add_title">Ajouter un appareil</string>
     <string name="popup_device_change_status_title">Modifier le statut d\'un appareil</string>
     <string name="popup_device_add_message">Cet appareil n\'existe pas, souhaitez-vous l\'ajouter ?</string>
     <string name="popup_device_change_status_message">Souhaitez-vous marquer l\'appareil %s comme étant "%s" ?</string>
+    <string name="popup_device_show_title">Appareil %s</string>
+    <string name="popup_device_show_message">Cet appareil est actuellement %s.</string>
 
     <!-- Other Toast notifications -->
     <string name="toast_confirm_added_device">L\'appareil %s a bien été ajouté</string>
 
     <!-- DeviceActions -->
     <string name="device_action_give">Prêté</string>
-    <string name="device_action_take_back">Récupéré</string>
+    <string name="device_action_take_back">Disponible</string>
+    <string name="toast_confirm_status_device">Le statut de l\'appareil a bien été modifié</string>
 
 </resources>

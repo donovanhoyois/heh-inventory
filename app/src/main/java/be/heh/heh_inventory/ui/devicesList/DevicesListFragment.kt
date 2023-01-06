@@ -25,18 +25,15 @@ class DevicesListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val devicesListViewModel =
-            ViewModelProvider(this).get(DevicesListViewModel::class.java)
-
+        val devicesListViewModel = ViewModelProvider(this).get(DevicesListViewModel::class.java)
         _binding = FragmentDevicesListBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         val devicesList = binding.devicesRecyclerView
         devicesListViewModel.devices.observe(viewLifecycleOwner) {
             devicesList.layoutManager = LinearLayoutManager(this.context)
-            devicesList.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity).navController)
+            devicesList.adapter = DevicesAdapter(DatabaseHelper.db.deviceDao().getAll(), (activity as HomeActivity))
         }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

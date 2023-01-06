@@ -21,7 +21,7 @@
         <!-- Reference input -->
 
         <TextView
-            android:id="@+id/form_title"
+            android:id="@+id/reference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

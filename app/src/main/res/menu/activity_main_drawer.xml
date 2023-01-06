@@ -17,7 +17,7 @@
             android:icon="@drawable/icon_smartphone"
             android:title="@string/menu_device_add" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_users_show"
             android:icon="@drawable/icon_users"
             android:title="@string/menu_users" />
     </group>

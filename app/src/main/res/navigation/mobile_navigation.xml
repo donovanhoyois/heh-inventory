@@ -21,15 +21,16 @@
         android:id="@+id/nav_device_add"
         android:name="be.heh.heh_inventory.ui.deviceAdd.DeviceAddFragment"
         android:label="@string/menu_device_add"
-        tools:layout="@layout/fragment_device_add">
-        <argument
-            android:name="ref"
-            app:argType="string"
-            android:defaultValue="@null" />
-    </fragment>
+        tools:layout="@layout/fragment_device_add" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_device_show"
+        android:name="be.heh.heh_inventory.ui.deviceShow.DeviceShowFragment"
+        android:label=""
+        tools:layout="@layout/fragment_device_show" />
+
+    <fragment
+        android:id="@+id/nav_users_show"
         android:name="be.heh.heh_inventory.ui.deviceAdd.DeviceAddFragment"
         android:label="@string/menu_users"
         tools:layout="@layout/fragment_device_add" />

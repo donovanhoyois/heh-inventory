@@ -1,16 +1,13 @@
 package be.heh.heh_inventory
 
 
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,7 +16,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.databinding.ActivityHomeBinding
-import be.heh.heh_inventory.ui.home.HomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -35,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var permission : DatabasePermission
 
     // Datas between fragments
-    var lastScannedRef : String? = null
+    var lastCheckedRef : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_devices_list, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_devices_list, R.id.nav_users_show
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

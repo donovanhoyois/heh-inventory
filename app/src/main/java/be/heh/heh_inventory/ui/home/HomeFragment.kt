@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -44,11 +44,6 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
         // QR Code
         setPermission()
         this.scannerView = binding.qrScanCameraPreview
@@ -64,17 +59,16 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         val activity = (activity as HomeActivity)
 
         // Prepare alert dialog box
-        val alertDialogBuilder = AlertDialog.Builder(activity.applicationContext)
+        val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
 
         if ((this.activity as HomeActivity).permission as DatabasePermission == DatabasePermission.READ_WRITE){
             if (device == null){
                 // ACTION : Add unregistered device
-                val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
                 with(alertDialogBuilder) {
                     setTitle(R.string.popup_device_add_title)
                     setMessage(R.string.popup_device_add_message)
                     setPositiveButton(R.string.popup_confirm){dialogInterface, which ->
-                        activity.lastScannedRef = result.toString()
+                        activity.lastCheckedRef = result.toString()
                         activity.navController.navigate(R.id.nav_device_add)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
@@ -86,11 +80,10 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
             }
             else{
                 // ACTION : Edit the device status
-                val alertDialogBuilder = AlertDialog.Builder(this.requireContext())
                 // Change message content according the the action (give or take back)
                 val message =
-                    if(device.nextAction == DeviceAction.GIVE)getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_give))
-                    else getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_take_back))
+                    if(device.nextAction == DeviceAction.GIVE) getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_give).lowercase())
+                    else getString(R.string.popup_device_change_status_message, device.ref, getString(R.string.device_action_take_back).lowercase())
                 with(alertDialogBuilder) {
                     setTitle(R.string.popup_device_change_status_title)
                     setMessage(message)
@@ -98,10 +91,11 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                         // Update status in Database
                         device.nextAction = if(device.nextAction == DeviceAction.GIVE) DeviceAction.TAKE_BACK else DeviceAction.GIVE
                         DatabaseHelper.db.deviceDao().update(device)
+                        Toast.makeText(context, R.string.toast_confirm_status_device, Toast.LENGTH_LONG).show()
                         activity.navController.navigate(R.id.nav_home)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_device_add)
+                        activity.navController.navigate(R.id.nav_home)
                     }
                 }
                 val alertDialog = alertDialogBuilder.create()
@@ -110,6 +104,19 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         }
         else{
             // See the device
+            val title = getString(R.string.popup_device_show_title, device.ref)
+            val message =
+                if (device.nextAction == DeviceAction.GIVE) getString(R.string.popup_device_show_message, getString(R.string.device_action_take_back).lowercase())
+                else getString(R.string.popup_device_show_message, getString(R.string.device_action_give).lowercase())
+            with(alertDialogBuilder) {
+                setTitle(title)
+                setMessage(message)
+                setNeutralButton(R.string.popup_neutral){dialogInterface, which ->
+                    activity.navController.navigate(R.id.nav_home)
+                }
+            }
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
         }
     }
 

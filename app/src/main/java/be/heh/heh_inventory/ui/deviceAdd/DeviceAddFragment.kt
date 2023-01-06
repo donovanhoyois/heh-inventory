@@ -42,8 +42,8 @@ class DeviceAddFragment : Fragment() {
 
         // Insert scanned ref if exists
         val activity = activity as HomeActivity
-        if (activity.lastScannedRef != null){
-            binding.inputReference.setText(activity.lastScannedRef)
+        if (activity.lastCheckedRef != null){
+            binding.inputReference.setText(activity.lastCheckedRef)
         }
 
         // Click listeners
