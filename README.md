@@ -1,2 +1,2 @@
 # heh-inventory
-Projet Android réalisé dans le cadre du cours "Applications hybrides".
+Application Android de gestion d'inventaire d'appareils (téléphones & tablettes).
