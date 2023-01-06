@@ -8,7 +8,7 @@ import be.heh.heh_inventory.database.entity.Device
 
 @Dao
 interface DeviceDao {
-    @Query("SELECT * FROM Device")
+    @Query("SELECT * FROM Device ORDER BY next_action ASC")
     fun getAll(): MutableList<Device>
 
     @Query("SELECT * FROM Device WHERE device_reference = (:ref)")

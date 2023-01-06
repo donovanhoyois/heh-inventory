@@ -24,18 +24,23 @@ class DeviceShowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Viewmodel and binding
+        // ViewModel and binding
         viewModel = ViewModelProvider(this).get(DeviceShowViewModel::class.java)
         _binding = FragmentDeviceShowBinding.inflate(inflater, container, false)
 
+        // Activity
+        val activity = activity as HomeActivity
+
         // Retrieve device
         val device : Device? =
-            (activity as HomeActivity).lastCheckedRef?.let {
+            activity.lastCheckedRef?.let {
                 DatabaseHelper.db.deviceDao().getByRef(it)
             }
+        activity.lastCheckedRef = null
 
         // Redirect if device is null
         if (device == null) (activity as HomeActivity).navController.navigate(R.id.nav_home)
+
         // Bind to UI
         else{
             binding.family.setImageResource(getFamilyImage(device.family))
@@ -60,4 +65,5 @@ class DeviceShowFragment : Fragment() {
         if (nextAction == DeviceAction.GIVE) return resources.getString(R.string.device_action_take_back)
         return resources.getString(R.string.device_action_give)
     }
+
 }

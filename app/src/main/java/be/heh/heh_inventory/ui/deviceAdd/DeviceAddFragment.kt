@@ -44,6 +44,7 @@ class DeviceAddFragment : Fragment() {
         val activity = activity as HomeActivity
         if (activity.lastCheckedRef != null){
             binding.inputReference.setText(activity.lastCheckedRef)
+            activity.lastCheckedRef = null
         }
 
         // Click listeners

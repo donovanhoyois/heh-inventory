@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Space
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
 import be.heh.heh_inventory.database.entity.Device
 
@@ -20,6 +22,7 @@ class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : R
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Your holder should contain and initialize a member variable
         // for any view that will be set as you render a row
+        val deviceStatusColor = itemView.findViewById<View>(R.id.device_status_color)
         val deviceFamilyImage = itemView.findViewById<ImageView>(R.id.device_family_image)
         val deviceFullName = itemView.findViewById<TextView>(R.id.device_full_name)
         val deviceReference = itemView.findViewById<TextView>(R.id.device_reference)
@@ -38,12 +41,17 @@ class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val device = devicesList[position]
-        if (devicesList[position].family == DeviceFamily.PHONE) holder.deviceFamilyImage.setImageResource(R.drawable.icon_smartphone)
-        else holder.deviceFamilyImage.setImageResource(R.drawable.icon_tablet)
+
+        // Insert device values
+            // Family image
+        if (devicesList[position].family == DeviceFamily.PHONE){ holder.deviceFamilyImage.setImageResource(R.drawable.icon_smartphone) }
+        else{ holder.deviceFamilyImage.setImageResource(R.drawable.icon_tablet) }
+            // Status
+        if (devicesList[position].nextAction == DeviceAction.GIVE){ holder.deviceStatusColor.setBackgroundResource(R.color.device_status_available) }
+        else { holder.deviceStatusColor.setBackgroundResource(R.color.device_status_unavailable) }
         holder.deviceFullName.text = device.brand+" "+device.name
         holder.deviceReference.text = device.ref
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.rootView.context, devicesList[position].ref, Toast.LENGTH_SHORT).show()
             activity.lastCheckedRef = devicesList[position].ref
             activity.navController.navigate(R.id.nav_device_show)
         }
