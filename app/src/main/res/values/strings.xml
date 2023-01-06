@@ -18,6 +18,9 @@
     <string name="form_hint_website">Site web</string>
     <string name="form_add_device_button">Ajouter l\'appareil</string>
 
+    <!-- Delete Device -->
+    <string name="form_delete_device_button">Supprimer l\'appareil</string>
+
     <!-- Icons alternate text -->
     <string name="icon_add_device">Ajouter un appareil</string>
     <string name="icon_scan_qr">Scanner un code QR</string>
@@ -57,9 +60,12 @@
     <string name="popup_device_change_status_message">Souhaitez-vous marquer l\'appareil %s comme étant "%s" ?</string>
     <string name="popup_device_show_title">Appareil %s</string>
     <string name="popup_device_show_message">Cet appareil est actuellement %s.</string>
+    <string name="popup_device_delete_title">Supprimer l\'appareil</string>
+    <string name="popup_device_delete_message">Voulez-vous vraiment supprimer l\'appareil %s ?</string>
 
     <!-- Other Toast notifications -->
     <string name="toast_confirm_added_device">L\'appareil %s a bien été ajouté</string>
+    <string name="toast_confirm_delete_device">L\'appareil %s a bien été supprimé</string>
 
     <!-- DeviceActions -->
     <string name="device_action_give">Prêté</string>

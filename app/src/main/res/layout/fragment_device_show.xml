@@ -33,6 +33,10 @@
             android:gravity="center"
             android:textSize="24sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/device_show_spacing" />
+
         <TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
@@ -42,11 +46,12 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/form_login_spacing" />
+            android:layout_height="@dimen/device_show_spacing" />
 
         <!-- Space -->
 
         <!-- Family Spinner -->
+
         <TextView
             android:id="@+id/brand"
             android:layout_width="match_parent"
@@ -56,7 +61,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/form_login_spacing" />
+            android:layout_height="@dimen/device_show_spacing" />
 
         <!-- Space -->
         <TextView
@@ -68,7 +73,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/form_login_spacing" />
+            android:layout_height="@dimen/device_show_spacing" />
 
         <!-- Brand input -->
 
@@ -89,14 +94,14 @@
         <!-- Space -->
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/form_login_spacing" />
+            android:layout_height="@dimen/device_show_spacing" />
 
         <!-- Add Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_device_button"
+            android:id="@+id/delete_device_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/form_add_device_button"
+            android:text="@string/form_delete_device_button"
             app:backgroundTint="@color/theme_primary"></com.google.android.material.button.MaterialButton>
     </LinearLayout>
 </LinearLayout>

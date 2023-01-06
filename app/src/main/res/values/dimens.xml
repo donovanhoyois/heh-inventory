@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="form_login_spacing">25dp</dimen>
+    <dimen name="device_show_spacing">15dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="form_padding">25dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>

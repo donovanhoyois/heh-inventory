@@ -1,6 +1,7 @@
 package be.heh.heh_inventory.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -8,7 +9,7 @@ import be.heh.heh_inventory.database.entity.Device
 
 @Dao
 interface DeviceDao {
-    @Query("SELECT * FROM Device ORDER BY next_action ASC")
+    @Query("SELECT * FROM Device ORDER BY next_action ASC, device_reference ASC")
     fun getAll(): MutableList<Device>
 
     @Query("SELECT * FROM Device WHERE device_reference = (:ref)")
@@ -19,4 +20,7 @@ interface DeviceDao {
 
     @Update
     fun update(vararg item: Device)
+
+    @Delete
+    fun delete(vararg item: Device)
 }
