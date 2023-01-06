@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import be.heh.heh_inventory.DatabaseHelper
+import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.DevicesAdapter
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.databinding.FragmentDevicesListBinding
-import be.heh.heh_inventory.ui.usersList.UsersListViewModel
 
 class DevicesListFragment : Fragment() {
 

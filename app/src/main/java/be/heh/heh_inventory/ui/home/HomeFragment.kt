@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import be.heh.heh_inventory.DatabaseHelper
+import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
@@ -52,6 +52,10 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(result: Result?) {
+        // Stop preview and camera
+        scannerView!!.stopCameraPreview()
+        scannerView!!.stopCamera()
+
         // Find device in database (return null if don't exists)
         val device = DatabaseHelper.db.deviceDao().getByRef(result.toString())
 
@@ -72,7 +76,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                         activity.navController.navigate(R.id.nav_device_add)
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_home)
+                        restartCamera()
                     }
                 }
                 val alertDialog = alertDialogBuilder.create()
@@ -92,10 +96,10 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                         device.nextAction = if(device.nextAction == DeviceAction.GIVE) DeviceAction.TAKE_BACK else DeviceAction.GIVE
                         DatabaseHelper.db.deviceDao().update(device)
                         Toast.makeText(context, R.string.toast_confirm_status_device, Toast.LENGTH_LONG).show()
-                        activity.navController.navigate(R.id.nav_home)
+                        restartCamera()
                     }
                     setNegativeButton(R.string.popup_cancel){dialogInterface, which ->
-                        activity.navController.navigate(R.id.nav_home)
+                        restartCamera()
                     }
                 }
                 val alertDialog = alertDialogBuilder.create()
@@ -111,8 +115,12 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
             with(alertDialogBuilder) {
                 setTitle(title)
                 setMessage(message)
+                setPositiveButton("Voir les détails"){dialogInterface, which ->
+                    activity.lastCheckedRef = result.toString()
+                    activity.navController.navigate(R.id.nav_device_show)
+                }
                 setNeutralButton(R.string.popup_neutral){dialogInterface, which ->
-                    activity.navController.navigate(R.id.nav_home)
+                    restartCamera()
                 }
             }
             val alertDialog = alertDialogBuilder.create()
@@ -120,17 +128,19 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         }
     }
 
+    fun restartCamera(){
+        scannerView?.setResultHandler(this)
+        scannerView?.startCamera(0)
+    }
 
     override fun onResume() {
         super.onResume()
-        scannerView?.setResultHandler(this)
-        //scannerView?.startCamera(0)
+        restartCamera()
     }
 
     override fun onStop() {
         super.onStop()
         scannerView?.stopCamera()
-        //onBackPressed()
     }
 
     private fun setPermission(){
@@ -147,9 +157,5 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    fun confirmAuthorization(){
-        print("ok")
     }
 }

@@ -1,10 +1,8 @@
 package be.heh.heh_inventory.ui.usersList
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import be.heh.heh_inventory.DatabaseHelper
-import be.heh.heh_inventory.database.entity.Device
+import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.database.entity.User
 
 class UsersListViewModel : ViewModel() {

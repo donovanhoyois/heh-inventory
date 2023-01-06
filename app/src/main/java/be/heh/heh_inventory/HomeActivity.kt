@@ -112,10 +112,8 @@ class HomeActivity : AppCompatActivity() {
                 else if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     val fragment = supportFragmentManager.findFragmentById(R.id.fragment_home)
                     print(fragment)
-                    //fragment.confirmAuthorization()
                 }
             }
         }
-        print(requestCode)
     }
 }

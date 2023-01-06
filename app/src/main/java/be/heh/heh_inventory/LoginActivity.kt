@@ -7,6 +7,7 @@ import android.text.TextUtils.isEmpty
 import android.widget.Button
 import android.widget.Toast
 import be.heh.heh_inventory.data.ErrorCode
+import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.database.entity.User
 import com.google.android.material.textfield.TextInputEditText
 import org.mindrot.jbcrypt.BCrypt

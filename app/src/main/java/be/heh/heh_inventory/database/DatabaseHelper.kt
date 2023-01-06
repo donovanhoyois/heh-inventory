@@ -1,10 +1,10 @@
-package be.heh.heh_inventory
+package be.heh.heh_inventory.database
 
 import android.content.Context
 import androidx.room.Room
+import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.AppDatabase
 import be.heh.heh_inventory.database.entity.Device
 import be.heh.heh_inventory.database.entity.User
 import kotlinx.coroutines.CoroutineScope
@@ -26,8 +26,9 @@ class DatabaseHelper {
         }
         private fun initializeDatabase(){
             if (db.userDao().getAll().isEmpty() && db.deviceDao().getAll().isEmpty()){
-                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
-                db.userDao().insert(User(0, "donovan.hoyois2@std.heh.be", BCrypt.hashpw("Mebeya1007", BCrypt.gensalt())))
+                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", BCrypt.hashpw("admin", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
+                db.userDao().insert(User(0, "fabrice.scopel@heh.be", BCrypt.hashpw("admin", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
+                db.userDao().insert(User(0, "standard.user@std.heh.be", BCrypt.hashpw("test", BCrypt.gensalt())))
                 db.deviceDao().insert(Device("146009/A",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
                 db.deviceDao().insert(Device("146009/B",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
                 db.deviceDao().insert(Device("146009/C",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))
