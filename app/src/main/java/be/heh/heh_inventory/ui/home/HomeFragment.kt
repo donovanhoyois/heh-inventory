@@ -131,6 +131,8 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
                         restartCamera()
                     }
                 }
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
             }
         }
     }
