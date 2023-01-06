@@ -47,7 +47,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
         // QR Code
         setPermission()
         this.scannerView = binding.qrScanCameraPreview
-        this.scannerView!!.startCamera()
+        scannerView!!.startCamera()
         return root
     }
 
@@ -124,7 +124,7 @@ class HomeFragment : Fragment(), ZXingScannerView.ResultHandler {
     override fun onResume() {
         super.onResume()
         scannerView?.setResultHandler(this)
-        scannerView?.startCamera(0)
+        //scannerView?.startCamera(0)
     }
 
     override fun onStop() {

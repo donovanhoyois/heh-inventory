@@ -5,6 +5,8 @@
     android:id="@+id/fragment_device_add"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/theme_secondary"
     android:orientation="vertical"
     android:paddingLeft="@dimen/form_padding"
     android:paddingRight="@dimen/form_padding"

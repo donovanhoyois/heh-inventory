@@ -30,30 +30,31 @@ class HomeActivity : AppCompatActivity() {
     lateinit var userMail : String
     lateinit var permission : DatabasePermission
 
-    // Datas between fragments
+    // Data shared between fragments
     var lastCheckedRef : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Binding
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Action bar
         setSupportActionBar(binding.appBarHome.toolbar)
 
         // Floating button
         binding.appBarHome.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            navController.navigate(R.id.nav_home)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_content_home)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Menu main destinations
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_devices_list, R.id.nav_users_list
+                R.id.nav_devices_list, R.id.nav_device_add, R.id.nav_users_list
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
