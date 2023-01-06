@@ -5,6 +5,7 @@
     android:id="@+id/fragment_device_add"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/theme_secondary"
     android:orientation="vertical"
     android:paddingLeft="@dimen/form_padding"
     android:paddingRight="@dimen/form_padding"
@@ -24,6 +25,7 @@
             android:id="@+id/reference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="@string/form_add_device_title"
             android:textSize="24sp" />
@@ -41,6 +43,7 @@
                 android:id="@+id/input_reference"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/form_background"
                 android:hint="@string/form_hint_reference" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +59,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
+            android:backgroundTint="@color/white"
+            android:backgroundTintMode="multiply"
+            android:contentDescription="@string/form_hint_family"
             android:spinnerMode="dropdown" />
 
         <!-- Space -->
@@ -73,6 +79,7 @@
                 android:id="@+id/input_brand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/form_background"
                 android:hint="@string/form_hint_brand" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +98,7 @@
                 android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/form_background"
                 android:hint="@string/form_hint_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,6 +117,7 @@
                 android:id="@+id/input_website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/form_background"
                 android:hint="@string/form_hint_website" />
         </com.google.android.material.textfield.TextInputLayout>
 

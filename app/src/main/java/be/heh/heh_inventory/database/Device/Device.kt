@@ -1,4 +1,4 @@
-package be.heh.heh_inventory.database.entity
+package be.heh.heh_inventory.database.Device
 
 import androidx.room.*
 import be.heh.heh_inventory.data.DeviceAction

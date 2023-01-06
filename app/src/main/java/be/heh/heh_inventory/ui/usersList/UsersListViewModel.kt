@@ -3,7 +3,7 @@ package be.heh.heh_inventory.ui.usersList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.heh.heh_inventory.database.DatabaseHelper
-import be.heh.heh_inventory.database.entity.User
+import be.heh.heh_inventory.database.User.User
 
 class UsersListViewModel : ViewModel() {
     private val _users = MutableLiveData<List<User>>().apply{

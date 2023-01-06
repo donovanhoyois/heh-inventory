@@ -1,19 +1,19 @@
-package be.heh.heh_inventory
+package be.heh.heh_inventory.ui.devicesList
 
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Space
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import be.heh.heh_inventory.HomeActivity
+import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.entity.Device
+import be.heh.heh_inventory.database.Device.Device
 
-class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : RecyclerView.Adapter<DevicesAdapter.ViewHolder>(){
+class DevicesListAdapter constructor(dataset : List<Device>, activity: Activity) : RecyclerView.Adapter<DevicesListAdapter.ViewHolder>(){
     val devicesList = dataset
     val activity = activity as HomeActivity
     var onItemClick : ((Device) -> Unit)? = null
@@ -42,10 +42,14 @@ class DevicesAdapter constructor(dataset : List<Device>, activity: Activity) : R
 
         // Insert device values
             // Family image
-        if (devicesList[position].family == DeviceFamily.PHONE){ holder.deviceFamilyImage.setImageResource(R.drawable.icon_smartphone) }
+        if (devicesList[position].family == DeviceFamily.PHONE){ holder.deviceFamilyImage.setImageResource(
+            R.drawable.icon_smartphone
+        ) }
         else{ holder.deviceFamilyImage.setImageResource(R.drawable.icon_tablet) }
             // Status
-        if (devicesList[position].nextAction == DeviceAction.GIVE){ holder.deviceStatusColor.setBackgroundResource(R.color.device_status_available) }
+        if (devicesList[position].nextAction == DeviceAction.GIVE){ holder.deviceStatusColor.setBackgroundResource(
+            R.color.device_status_available
+        ) }
         else { holder.deviceStatusColor.setBackgroundResource(R.color.device_status_unavailable) }
         holder.deviceFullName.text = device.brand+" "+device.name
         holder.deviceReference.text = device.ref

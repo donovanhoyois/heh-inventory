@@ -1,6 +1,5 @@
 package be.heh.heh_inventory.ui.usersList
 
-import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
-import be.heh.heh_inventory.database.entity.User
+import be.heh.heh_inventory.database.User.User
 
-class UsersAdapter(dataset: List<User>, activity: FragmentActivity?) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+class UsersListAdapter(dataset: List<User>, activity: FragmentActivity?) : RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
     val usersList = dataset
     val activity = activity as HomeActivity
     var onItemClick : ((User) -> Unit)? = null

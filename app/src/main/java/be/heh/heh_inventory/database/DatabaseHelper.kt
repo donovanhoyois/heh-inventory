@@ -2,11 +2,10 @@ package be.heh.heh_inventory.database
 
 import android.content.Context
 import androidx.room.Room
-import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.entity.Device
-import be.heh.heh_inventory.database.entity.User
+import be.heh.heh_inventory.database.Device.Device
+import be.heh.heh_inventory.database.User.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,8 +24,8 @@ class DatabaseHelper {
             }
         }
         private fun initializeDatabase(){
+            // Called only at the first startup (or after data cleanup)
             if (db.userDao().getAll().isEmpty() && db.deviceDao().getAll().isEmpty()){
-                db.userDao().insert(User(0, "donovan.hoyois@std.heh.be", BCrypt.hashpw("admin", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
                 db.userDao().insert(User(0, "fabrice.scopel@heh.be", BCrypt.hashpw("admin", BCrypt.gensalt()), DatabasePermission.READ_WRITE))
                 db.userDao().insert(User(0, "standard.user@std.heh.be", BCrypt.hashpw("test", BCrypt.gensalt())))
                 db.deviceDao().insert(Device("146009/A",DeviceFamily.PHONE, "LG", "Nexus 5", "https://www.lg.com/"))

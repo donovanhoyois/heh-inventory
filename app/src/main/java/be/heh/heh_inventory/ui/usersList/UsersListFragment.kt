@@ -27,9 +27,13 @@ class UsersListFragment : Fragment() {
         // Bind to UI
         viewModel.users.observe(viewLifecycleOwner){
             binding.usersRecyclerView.layoutManager = LinearLayoutManager(this.context)
-            binding.usersRecyclerView.adapter = UsersAdapter(DatabaseHelper.db.userDao().getAll(), activity)
+            binding.usersRecyclerView.adapter = UsersListAdapter(DatabaseHelper.db.userDao().getAll(), activity)
         }
-
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -1,4 +1,4 @@
-package be.heh.heh_inventory.database.entity
+package be.heh.heh_inventory.database.User
 
 import androidx.room.*
 import be.heh.heh_inventory.data.DatabasePermission

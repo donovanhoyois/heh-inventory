@@ -1,11 +1,11 @@
-package be.heh.heh_inventory.database.dao
+package be.heh.heh_inventory.database.User
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import be.heh.heh_inventory.data.DatabasePermission
-import be.heh.heh_inventory.database.entity.User
+import be.heh.heh_inventory.database.User.User
 
 @Dao
 interface UserDao {

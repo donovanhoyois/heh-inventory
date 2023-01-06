@@ -1,6 +1,5 @@
 package be.heh.heh_inventory.ui.deviceShow
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,21 +13,19 @@ import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DatabasePermission
 import be.heh.heh_inventory.data.DeviceAction
 import be.heh.heh_inventory.data.DeviceFamily
-import be.heh.heh_inventory.database.entity.Device
+import be.heh.heh_inventory.database.Device.Device
 import be.heh.heh_inventory.databinding.FragmentDeviceShowBinding
 
 class DeviceShowFragment : Fragment() {
     private var _binding: FragmentDeviceShowBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: DeviceShowViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // ViewModel and binding
-        viewModel = ViewModelProvider(this).get(DeviceShowViewModel::class.java)
+        // Binding
         _binding = FragmentDeviceShowBinding.inflate(inflater, container, false)
 
         // Activity

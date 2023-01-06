@@ -1,11 +1,10 @@
-package be.heh.heh_inventory.database.dao
+package be.heh.heh_inventory.database.Device
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import be.heh.heh_inventory.database.entity.Device
 
 @Dao
 interface DeviceDao {

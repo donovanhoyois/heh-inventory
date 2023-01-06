@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.heh.heh_inventory.database.DatabaseHelper
-import be.heh.heh_inventory.database.entity.Device
+import be.heh.heh_inventory.database.Device.Device
 
 class DevicesListViewModel : ViewModel() {
 

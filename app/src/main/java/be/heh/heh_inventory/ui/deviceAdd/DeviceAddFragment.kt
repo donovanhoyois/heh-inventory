@@ -6,21 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import be.heh.heh_inventory.database.DatabaseHelper
 import be.heh.heh_inventory.HomeActivity
 import be.heh.heh_inventory.R
 import be.heh.heh_inventory.data.DeviceFamily
 import be.heh.heh_inventory.data.ErrorCode
-import be.heh.heh_inventory.database.entity.Device
+import be.heh.heh_inventory.database.Device.Device
 import be.heh.heh_inventory.databinding.FragmentDeviceAddBinding
 
 class DeviceAddFragment : Fragment() {
-
     private var _binding: FragmentDeviceAddBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,11 +23,11 @@ class DeviceAddFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val deviceAddViewModel =
-            ViewModelProvider(this).get(DeviceAddViewModel::class.java)
-
+        // Binding
         _binding = FragmentDeviceAddBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+
+        // Activity
+        val activity = activity as HomeActivity
 
         // Spinner values list
         val dropdown = binding.spinnerFamily
@@ -41,7 +36,6 @@ class DeviceAddFragment : Fragment() {
             context?.let { ArrayAdapter(it, android.R.layout.simple_spinner_dropdown_item, families) }
 
         // Insert scanned ref if exists
-        val activity = activity as HomeActivity
         if (activity.lastCheckedRef != null){
             binding.inputReference.setText(activity.lastCheckedRef)
             activity.lastCheckedRef = null
@@ -63,7 +57,7 @@ class DeviceAddFragment : Fragment() {
             }
         }
 
-        return root
+        return binding.root
     }
 
     private fun checkInputs() : Enum<ErrorCode>{
@@ -84,6 +78,7 @@ class DeviceAddFragment : Fragment() {
     }
 
     private fun addToDatabase() {
+        // Register the new device created
         val family = if(binding.spinnerFamily.selectedItem.toString() == resources.getStringArray(R.array.device_families)[0]) DeviceFamily.PHONE else DeviceFamily.TABLET
         val newDevice = Device(
             binding.inputReference.text.toString(),
